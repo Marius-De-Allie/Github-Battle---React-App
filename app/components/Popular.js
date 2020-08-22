@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import LanguagesNav from './LanguagesNav';
+import { fetchPopularRepos } from '../utils/api';
 
 class Popular extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            selectedLanguage: 'All'
+            selectedLanguage: 'All',
+            repos: null,
+            error: null
         };
         this.updateLanguage = this.updateLanguage.bind(this);
     }
