@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 function LanguagesNav({ selected, onUpdateLanguage }) {
     const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python'];
@@ -21,6 +22,12 @@ function LanguagesNav({ selected, onUpdateLanguage }) {
             </ul>
         </Fragment>
     );
+}
+
+// Component PropTypes.
+LanguagesNav.propTypes = {
+    selected: PropTypes.oneOf(['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']).isRequired,
+    onUpdateLanguage: PropTypes.func.isRequired
 }
 
 export default LanguagesNav;
