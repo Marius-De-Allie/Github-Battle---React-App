@@ -14,6 +14,10 @@ class Popular extends Component {
         this.updateLanguage = this.updateLanguage.bind(this);
     }
 
+    componentDidMount() {
+        this.updateLanguage(this.state.selectedLanguage);
+    }
+
     updateLanguage(selectedLanguage) {
         this.setState(prevState => ({
             selectedLanguage,
@@ -37,10 +41,15 @@ class Popular extends Component {
     };
 
     render() {
-        const { selectedLanguage } = this.state;
+        const { selectedLanguage, repos, error } = this.state;
 
         return (
-            <LanguagesNav selected={selectedLanguage} onUpdateLanguage={this.updateLanguage} />
+            <React.Fragment>
+                <LanguagesNav selected={selectedLanguage} onUpdateLanguage={this.updateLanguage} />
+                {repos === null && error === null && <p>LOADING</p>}
+                {error && <p>{error}</p>}
+                {repos && <pre>{JSON.stringify(repos, null, 2)}</pre>}
+            </React.Fragment>
         );
     }
 }
