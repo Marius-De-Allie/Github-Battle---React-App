@@ -16,8 +16,24 @@ class Popular extends Component {
 
     updateLanguage(selectedLanguage) {
         this.setState(prevState => ({
-            selectedLanguage
-        }))
+            selectedLanguage,
+            repos: null,
+            error: null
+        }));
+
+        fetchPopularRepos(selectedLanguage)
+        .then(repos => {
+            this.setState(prevState => ({
+                repos,
+                error: null
+            }))
+        })
+        .catch((e) => {
+            console.warn('Error fetching repos', e);
+            this.setState({
+                error: 'There wasan error fetching the repositories.'
+            })
+        });
     };
 
     render() {
