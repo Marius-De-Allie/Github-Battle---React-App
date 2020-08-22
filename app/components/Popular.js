@@ -8,7 +8,7 @@ class Popular extends Component {
 
         this.state = {
             selectedLanguage: 'All',
-            repos: null,
+            repos: {},
             error: null
         };
         this.updateLanguage = this.updateLanguage.bind(this);
@@ -21,23 +21,27 @@ class Popular extends Component {
     updateLanguage(selectedLanguage) {
         this.setState(prevState => ({
             selectedLanguage,
-            repos: null,
             error: null
         }));
 
-        fetchPopularRepos(selectedLanguage)
-        .then(repos => {
-            this.setState(prevState => ({
-                repos,
-                error: null
-            }))
-        })
-        .catch((e) => {
-            console.warn('Error fetching repos', e);
-            this.setState({
-                error: 'There wasan error fetching the repositories.'
+        if(!this.state.repos[selectedLanguage]) {
+            fetchPopularRepos(selectedLanguage)
+            .then(data => {
+                this.setState(({ repos })=> ({
+                    repos: {
+                        ...repos,
+                        [selectedLanguage]: data
+                    },
+                    error: null
+                }))
             })
-        });
+            .catch((e) => {
+                console.warn('Error fetching repos', e);
+                this.setState({
+                    error: 'There was an error fetching the repositories.'
+                })
+            });
+        }
     };
 
     render() {
@@ -46,9 +50,9 @@ class Popular extends Component {
         return (
             <React.Fragment>
                 <LanguagesNav selected={selectedLanguage} onUpdateLanguage={this.updateLanguage} />
-                {repos === null && error === null && <p>LOADING</p>}
+                {!repos[selectedLanguage] && error === null && <p>LOADING</p>}
                 {error && <p>{error}</p>}
-                {repos && <pre>{JSON.stringify(repos, null, 2)}</pre>}
+                {repos[selectedLanguage] && <pre>{JSON.stringify(repos[selectedLanguage], null, 2)}</pre>}
             </React.Fragment>
         );
     }
