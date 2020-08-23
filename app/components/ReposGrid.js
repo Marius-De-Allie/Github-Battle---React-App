@@ -28,15 +28,15 @@ const ReposGrids = ({ repos }) => console.log(repos)||(
                         </li>
                         <li>
                             <FaStar color='rgb(255, 215, 0)' size={22} />
-                            {repo.stargazers_count.toLocaleString()} stars
+                            {`${repo.stargazers_count.toLocaleString()} stars`} 
                         </li>
                         <li>
                             <FaCodeBranch color='rgb(129, 195, 245)' size={22} />
-                            {repo.forks.toLocaleString()} forks
+                            {`${repo.forks.toLocaleString()} forks`}
                         </li>
                         <li>
                             <FaExclamationTriangle color='rgb(241, 138, 147)' size={22} />
-                            {repo.open_issues.toLocaleString()} open issues
+                            {`${repo.open_issues.toLocaleString()} open issues`} 
                         </li>
                     </ul>
                 </li>
