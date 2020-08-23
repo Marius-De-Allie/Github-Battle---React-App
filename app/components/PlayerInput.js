@@ -47,7 +47,7 @@ class PlayerInput extends React.Component {
                         placeholder='Github username'
                         autoComplete='off'
                     />
-                    <button type='submit' className='btn btn-dark' disabled={!username}>Submit</button>
+                    <button type='submit' className='btn dark-btn' disabled={!username}>Submit</button>
                 </div>
             </form>
         );
