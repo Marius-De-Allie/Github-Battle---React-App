@@ -1,6 +1,12 @@
 import React from 'react';
+import { battle } from '../utils/api';
 
 class Results extends React.Component {
+
+    componentDidMount() {
+        battle([this.props.playerOne, this.props.playerTwo])
+        .then((players) =>console.log(players))
+    }
 
     render() {
         const { playerOne, playerTwo } = this.props;

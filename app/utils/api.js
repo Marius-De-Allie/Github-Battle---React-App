@@ -69,4 +69,4 @@ const fetchPopularRepos = (language) => {
     });
 };
 
-export { fetchPopularRepos };
+export { fetchPopularRepos, battle };
