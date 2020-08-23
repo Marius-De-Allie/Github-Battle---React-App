@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Instructions from './BattleInstructions';
 import PlayerInput from './PlayerInput';
 import PlayerPreview from './PlayerPreview';
+import Results from './Results';
 
 class Battle extends Component {
 
@@ -10,7 +11,8 @@ class Battle extends Component {
 
         this.state = {
             playerOne: null,
-            playerTwo: null
+            playerTwo: null,
+            battle: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -31,6 +33,10 @@ class Battle extends Component {
 
     render() {
         const { playerOne, playerTwo } = this.state; 
+
+        if(battle) {
+            return <Results playerOne={playerOne} playerTwo={playerTwo} />
+        }
 
         return (
             <Fragment>
