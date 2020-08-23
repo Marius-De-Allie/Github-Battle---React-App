@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Instructions from './BattleInstructions';
 import PlayerInput from './PlayerInput';
+import PlayerPreview from './PlayerPreview';
 
 class Battle extends Component {
 
@@ -35,13 +36,23 @@ class Battle extends Component {
                                 onSubmit={player => this.handleSubmit('playerOne',player)} 
                                 label='Player One'
                             /> : 
-                            <p>Player 1</p> }
+                            <PlayerPreview 
+                                label='Player One' 
+                                onReset={() => {}} 
+                                username={playerOne}
+                            /> 
+                        }
                         {!playerTwo ? 
                             <PlayerInput 
                                 onSubmit={player => this.handleSubmit('playerTwo', player)} 
                                 label='Player Two'
                             /> : 
-                            <p>Player 2</p>}
+                            <PlayerPreview 
+                                label='Player Two' 
+                                onReset={() => {}} 
+                                username={playerTwo}
+                            /> 
+                        }
                     </div>
                     {playerOne && playerTwo && <button type='button'>Battle</button>}
                 </div>
