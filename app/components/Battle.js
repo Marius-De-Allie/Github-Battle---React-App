@@ -22,6 +22,13 @@ class Battle extends Component {
 
     }
 
+    handleReset(id) {
+        // Reset playerOne or PlayerTwo state to null
+        this.setState({
+            [id]: null
+        });
+    }
+
     render() {
         const { playerOne, playerTwo } = this.state; 
 
@@ -38,7 +45,7 @@ class Battle extends Component {
                             /> : 
                             <PlayerPreview 
                                 label='Player One' 
-                                onReset={() => {}} 
+                                onReset={() => this.handleReset('playerOne')} 
                                 username={playerOne}
                             /> 
                         }
@@ -49,7 +56,7 @@ class Battle extends Component {
                             /> : 
                             <PlayerPreview 
                                 label='Player Two' 
-                                onReset={() => {}} 
+                                onReset={() => this.handleReset('playerTwo')} 
                                 username={playerTwo}
                             /> 
                         }
