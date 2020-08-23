@@ -9,6 +9,14 @@ class PlayerInput extends React.Component {
         this.state = {
             username: ''
         }
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(evt) {
+        this.setState(prevState => ({
+            username: evt.target.value
+        }));
     }
 
     render() {
@@ -23,7 +31,7 @@ class PlayerInput extends React.Component {
                         id='username'
                         name='username'
                         value={username} 
-                        onChange={(e) => this.setState({username: e.target.value})}
+                        onChange={this.handleChange}
                         placeholder='Github username'
                         autoComplete='off'
                     />
