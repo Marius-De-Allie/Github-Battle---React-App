@@ -16,6 +16,7 @@ class Battle extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleReset = this.handleReset.bind(this);
+        this.handleBattleClick = this.handleBattleClick.bind(this);
     }
 
     handleSubmit(id, player) {
@@ -29,6 +30,12 @@ class Battle extends Component {
         // Reset playerOne or PlayerTwo state to null
         this.setState({
             [id]: null
+        });
+    }
+
+    handleBattleClick() {
+        this.setState({
+            battle: true
         });
     }
 
@@ -71,7 +78,7 @@ class Battle extends Component {
                     {playerOne && playerTwo && 
                         <button 
                             type='button' 
-                            onClick={() => this.setState({battle: true})}
+                            onClick={this.handleBattleClick}
                         >
                             Battle
                         </button>
