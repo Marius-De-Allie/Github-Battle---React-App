@@ -28,6 +28,12 @@ div.container {
     align-items: center;
 }
 
+.header-sm {
+    font-size: 20px;
+    font-weight: 300;
+    margin: 10px;
+}
+
 .btn-clear {
     border: none;
     background: transparent;
@@ -42,4 +48,29 @@ div.container {
 
 .active {
     color: rgb(187, 46, 31);
+}
+
+.instructions-container {
+    margin: 100px 0;
+
+}
+
+.container-sm {
+    width: 80%;
+    margin: 0 auto;
+}
+
+ol.battle-instructions {
+    padding: 0;
+    font-size: 25px;;
+}
+
+ol.battle-instructions li {
+    flex: 1;
+    min-width: 300px;
+}
+
+ol.battle-instructions svg {
+    padding: 40px;
+    border-radius: 3px;
 }
