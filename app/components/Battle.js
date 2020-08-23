@@ -15,6 +15,7 @@ class Battle extends Component {
             battle: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleReset = this.handleReset.bind(this);
     }
 
     handleSubmit(id, player) {
@@ -32,7 +33,7 @@ class Battle extends Component {
     }
 
     render() {
-        const { playerOne, playerTwo } = this.state; 
+        const { playerOne, playerTwo, battle } = this.state; 
 
         if(battle) {
             return <Results playerOne={playerOne} playerTwo={playerTwo} />
@@ -67,7 +68,14 @@ class Battle extends Component {
                             /> 
                         }
                     </div>
-                    {playerOne && playerTwo && <button type='button'>Battle</button>}
+                    {playerOne && playerTwo && 
+                        <button 
+                            type='button' 
+                            onClick={() => this.setState({battle: true})}
+                        >
+                            Battle
+                        </button>
+                    }
                 </div>
             </Fragment>
         );
