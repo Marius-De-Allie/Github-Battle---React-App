@@ -11,19 +11,31 @@ class PlayerInput extends React.Component {
         }
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(evt) {
+        const { value } = evt.target;
         this.setState(prevState => ({
-            username: evt.target.value
+            username: value
         }));
+    }
+
+    handleSubmit(evt) {
+        const { username } = this.state;
+        evt.preventDefault();
+        this.props.onSubmit(username);
+        // Clear input field after form submission.
+        this.setState({
+            username: ''
+        });
     }
 
     render() {
         const { username } = this.state;
 
         return (
-            <form onSubmit={(evt) => console.log(evt)} className='column player'>
+            <form onSubmit={this.handleSubmit} className='column player'>
                 <label htmlFor='username' className='player-label'>{this.props.label}</label>
                 <div className='row player-inputs'>
                     <input 
