@@ -15,7 +15,7 @@ const Card = ({ header, avatar, name, subHeader, href, children }) => (
             {subHeader}
         </h4>
         <h2 className='center-text'>
-            <a className='link' href={href}>
+            <a className='link' href={href} target='_blank'>
                 {name}
             </a>
         </h2>
