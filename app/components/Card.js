@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Card = ({ header, avatar, name, subHeader, href, children }) => (
     <div className='card bg-light'>
@@ -21,5 +22,14 @@ const Card = ({ header, avatar, name, subHeader, href, children }) => (
         {children}
     </div>
 );
+
+// Card proptypes.
+Card.propTypes = {
+    header: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    subHeader: PropTypes.string,
+    href: PropTypes.string.isRequired,
+};
 
 export default Card;
