@@ -74,3 +74,9 @@ ol.battle-instructions svg {
     padding: 40px;
     border-radius: 3px;
 }
+
+.error {
+    color: '#ff16161';
+    font-size: 20px;
+    margin: 50px 0;
+}

@@ -52,7 +52,7 @@ class Popular extends Component {
             <React.Fragment>
                 <LanguagesNav selected={selectedLanguage} onUpdateLanguage={this.updateLanguage} />
                 {!repos[selectedLanguage] && error === null && <p>LOADING</p>}
-                {error && <p>{error}</p>}
+                {error && <p className='center-text error'>{error}</p>}
                 {repos[selectedLanguage] && <ReposGrid repos={repos[selectedLanguage]} />}
             </React.Fragment>
         );
