@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FaCompass, FaBriefcase, FaUsers, FaUserFriends, FaCode, FaUser } from 'react-icons/fa';
 import { battle } from '../utils/api';
 import Card from './Card';
@@ -80,6 +81,13 @@ class Results extends React.Component {
             </React.Fragment>
         );
     }
+};
+
+// Results proptypes.
+Results.propTypes = {
+    playerOne: PropTypes.string.isRequired, 
+    playerTwo: PropTypes.string.isRequired, 
+    onReset: PropTypes.func.isRequired
 };
 
 export default Results;
