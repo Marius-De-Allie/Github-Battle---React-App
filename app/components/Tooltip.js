@@ -23,48 +23,17 @@ const Tooltip = styled.div`
     font-size: 14px
 `;
 
-class ToolTip extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            hovering: false
-        }
-
-        this.mouseOver = this.mouseOver.bind(this);
-        this.mouseOut = this.mouseOut.bind(this);
-    }
-
-    mouseOver() {
-        this.setState(prevState => ({
-            hovering: true
-        }))
-    }
-    mouseOut() {
-        this.setState(prevState => ({
-            hovering: false
-        }))
-    }
-
-    render() {
-        const { text, children }  = this.props;
-        const { hovering } = this.state;
-
-        return (
-            <TooltipContainer
-                onMouseOver={this.mouseOver}
-                onMouseOut={this.mouseOut}
-            >
-                {hovering && <Tooltip>{text}</Tooltip>}
-                {children}
-            </TooltipContainer>
-        );
-    }
-};
+const ToolTip = ({ text, children, hovering }) => (
+    <TooltipContainer>
+        {hovering && <Tooltip>{text}</Tooltip>}
+        {children}
+    </TooltipContainer>
+);
 
 // Tooltip proptypes.
 Tooltip.propType = {
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
+    hovering: PropTypes.bool
 };
 
 export default ToolTip;
