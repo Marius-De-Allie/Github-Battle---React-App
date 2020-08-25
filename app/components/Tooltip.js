@@ -67,4 +67,4 @@ Tooltip.propType = {
     text: PropTypes.string.isRequired
 };
 
-export default ToolTips;
+export default ToolTip;

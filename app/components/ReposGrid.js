@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FaUser, FaStar, FaCodeBranch, FaExclamationTriangle } from 'react-icons/fa';
 import Card from './Card';
+import Tooltip from './Tooltip';
 
 const ReposGrids = ({ repos }) => console.log(repos)||(
     <ul className='grid space-around'>
@@ -21,8 +22,10 @@ const ReposGrids = ({ repos }) => console.log(repos)||(
                     >
                         <ul className="card-list">
                             <li>
-                                <FaUser color='rgb(255, 191, 116)' size={22} />
-                                <a href={`https://github.com/${repo.owner.login}`} target='_blank'>{repo.owner.login}</a>
+                                <Tooltip text='Github username'>
+                                    <FaUser color='rgb(255, 191, 116)' size={22} />
+                                    <a href={`https://github.com/${repo.owner.login}`} target='_blank'>{repo.owner.login}</a>
+                                </Tooltip>
                             </li>
                             <li>
                                 <FaStar color='rgb(255, 215, 0)' size={22} />
