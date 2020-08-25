@@ -36,7 +36,7 @@ class Results extends React.Component {
     }
 
     render() {
-        const { playerOne, playerTwo } = this.props;
+        const { playerOne, playerTwo, onReset } = this.props;
         const { winner, loser, error, loading } = this.state;
 
         if(loading) {
@@ -46,30 +46,38 @@ class Results extends React.Component {
         }
         
         return (
-            <div className='grid space-around container-sm'>
-                {/*Winner Card */}
-                <Card
-                    header={winner.score === loser.score ? 'Tie' : 'Winner'}
-                    avatar={winner.profile.avatar_url}
-                    name={winner.profile.login}
-                    subHeader={`Score: ${winner.score.toLocaleString()}`}
-                    href={winner.profile.html_url}
+            <React.Fragment>
+                <div className='grid space-around container-sm'>
+                    {/*Winner Card */}
+                    <Card
+                        header={winner.score === loser.score ? 'Tie' : 'Winner'}
+                        avatar={winner.profile.avatar_url}
+                        name={winner.profile.login}
+                        subHeader={`Score: ${winner.score.toLocaleString()}`}
+                        href={winner.profile.html_url}
+                    >
+                        <ProfileList profile={winner.profile} />
+                    </Card>
+                    {/* Loser Card */}
+                    <Card
+                        header={winner.score === loser.score ? 'Tie' : 'Loser'}
+                        avatar={loser.profile.avatar_url}
+                        name={loser.profile.login}
+                        subHeader={`Score: ${loser.score.toLocaleString()}`}
+                        href={loser.profile.html_url}
+                    >
+                        <ProfileList profile={loser.profile} />
+                    </Card>
+                    {/*Results
+                    <pre>{JSON.stringify(this.state, null, 2)}</pre>*/}
+                </div>
+                <button 
+                    className='btn dark-btn btn-space'
+                    onClick={onReset}
                 >
-                    <ProfileList profile={winner.profile} />
-                </Card>
-                {/* Loser Card */}
-                <Card
-                    header={winner.score === loser.score ? 'Tie' : 'Loser'}
-                    avatar={loser.profile.avatar_url}
-                    name={loser.profile.login}
-                    subHeader={`Score: ${loser.score.toLocaleString()}`}
-                    href={loser.profile.html_url}
-                >
-                    <ProfileList profile={loser.profile} />
-                </Card>
-                {/*Results
-                <pre>{JSON.stringify(this.state, null, 2)}</pre>*/}
-            </div>
+                    Reset
+                </button>
+            </React.Fragment>
         );
     }
 };

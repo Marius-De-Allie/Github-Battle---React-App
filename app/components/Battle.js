@@ -39,11 +39,19 @@ class Battle extends Component {
         });
     }
 
+    handleBattleReset() {
+        this.setState(prevState => ({
+            playerOne: null,
+            playerTwo: null,
+            battle: false
+        }));
+    }
+
     render() {
         const { playerOne, playerTwo, battle } = this.state; 
 
         if(battle) {
-            return <Results playerOne={playerOne} playerTwo={playerTwo} />
+            return <Results playerOne={playerOne} playerTwo={playerTwo} onReset={this.handleBattleReset}/>
         }
 
         return (
