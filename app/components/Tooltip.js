@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import withHover from './withHover';
 
 const TooltipContainer = styled.div`
     position: relative;
@@ -36,4 +37,4 @@ Tooltip.propType = {
     hovering: PropTypes.bool
 };
 
-export default ToolTip;
+export default withHover(ToolTip);
