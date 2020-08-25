@@ -2,6 +2,7 @@ import React from 'react';
 import { FaCompass, FaBriefcase, FaUsers, FaUserFriends, FaCode, FaUser } from 'react-icons/fa';
 import { battle } from '../utils/api';
 import Card from './Card';
+import ProfileList from './ProfileList';
 
 class Results extends React.Component {
 
@@ -54,32 +55,7 @@ class Results extends React.Component {
                     subHeader={`Score: ${winner.score.toLocaleString()}`}
                     href={winner.profile.html_url}
                 >
-                    <ul className='card-list'>
-                        <li>
-                            <FaUser color='rgb(239, 115, 115)' size={22} />
-                            {winner.profile.name}
-                        </li>
-                        {winner.profile.location && (
-                            <li>
-                                <FaCompass color='rgb(144, 115, 255)' size={22} />
-                                {winner.profile.location}
-                            </li>
-                        )}
-                        {winner.profile.company && (
-                            <li>
-                                <FaBriefcase color='#795548' size={22} />
-                                {winner.profile.company}
-                            </li>
-                        )}
-                        <li>
-                            <FaUsers color='rgb(129, 195, 245)' size={22} />
-                            {winner.profile.followers.toLocaleString()}
-                        </li>
-                        <li>
-                            <FaUserFriends color='rgb(64, 183, 95)' size={22} />
-                            {winner.profile.following.toLocaleString()}
-                        </li>
-                    </ul>
+                    <ProfileList profile={winner.profile} />
                 </Card>
                 {/* Loser Card */}
                 <Card
@@ -89,32 +65,7 @@ class Results extends React.Component {
                     subHeader={`Score: ${loser.score.toLocaleString()}`}
                     href={loser.profile.html_url}
                 >
-                    <ul className='card-list'>
-                        <li>
-                            <FaUser color='rgb(239, 115, 115)' size={22} />
-                            {loser.profile.name}
-                        </li>
-                        {loser.profile.location && (
-                            <li>
-                                <FaCompass color='rgb(144, 115, 255)' size={22} />
-                                {loser.profile.location}
-                            </li>
-                        )}
-                        {loser.profile.company && (
-                            <li>
-                                <FaBriefcase color='#795548' size={22} />
-                                {loser.profile.company}
-                            </li>
-                        )}
-                        <li>
-                            <FaUsers color='rgb(129, 195, 245)' size={22} />
-                            {loser.profile.followers.toLocaleString()}
-                        </li>
-                        <li>
-                            <FaUserFriends color='rgb(64, 183, 95)' size={22} />
-                            {loser.profile.following.toLocaleString()}
-                        </li>
-                    </ul>
+                    <ProfileList profile={loser.profile} />
                 </Card>
                 {/*Results
                 <pre>{JSON.stringify(this.state, null, 2)}</pre>*/}
