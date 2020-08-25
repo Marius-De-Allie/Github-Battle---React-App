@@ -46,6 +46,7 @@ class Results extends React.Component {
         
         return (
             <div className='grid space-around container-sm'>
+                {/*Winner Card */}
                 <Card
                     header={winner.score === loser.score ? 'Tie' : 'Winner'}
                     avatar={winner.profile.avatar_url}
@@ -79,9 +80,8 @@ class Results extends React.Component {
                             {winner.profile.following.toLocaleString()}
                         </li>
                     </ul>
-                
                 </Card>
-
+                {/* Loser Card */}
                 <Card
                     header={winner.score === loser.score ? 'Tie' : 'Loser'}
                     avatar={loser.profile.avatar_url}
