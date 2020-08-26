@@ -1,18 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Popular from './components/Popular';
-import Battle from './components/Battle';
-import Results from './components/Results';
+// import Popular from './components/Popular';
+// import Battle from './components/Battle';
+// import Results from './components/Results';
 import ThemeContext from './contexts/theme';
 import Nav from './components/Nav';
 // Styles
 import './index.css';
 
+const LazyPopular = React.lazy(() => import('./components/Popular'))
+const LazyBattle = React.lazy(() => import('./components/Battle'))
+const LazyResults = React.lazy(() => import('./components/Results'))
+
 // Component peices.
 // 1. State
 // 2. Lifecycle
 // 3. UI - render method
+
+// TODO replace with actually loading component.
+const Loading = () => (
+    <h3>LOADING</h3>
+);
 
 class App extends React.Component {
     constructor(props) {
@@ -35,12 +44,14 @@ class App extends React.Component {
                     <div className={this.state.theme}>
                         <div className='container'>
                             <Nav />
-                            <Switch>
-                                <Route exact path='/' component={Popular} />
-                                <Route exact path='/battle'component={Battle} />
-                                <Route path='/battle/results'component={Results} />
-                                <Route render={() => <h1>404 - Sorry page not found</h1>} />
-                            </Switch>
+                            <React.Suspense fallback={<Loading />}>
+                                <Switch>
+                                    <Route exact path='/' component={LazyPopular} />
+                                    <Route exact path='/battle'component={LazyBattle} />
+                                    <Route path='/battle/results'component={LazyResults} />
+                                    <Route render={() => <h1>404 - Sorry page not found</h1>} />
+                                </Switch>
+                            </React.Suspense>
                         </div>
                     </div>
                 </ThemeContext.Provider>
