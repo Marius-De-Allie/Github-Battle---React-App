@@ -52,6 +52,15 @@ div.container {
     color: inherit;
 }
 
+.nav li {
+    margin-right: 10px;
+}
+
+.active-nav {
+    color: rgb(187, 46, 31);
+    
+}
+
 .active {
     color: rgb(187, 46, 31);
 }
@@ -105,4 +114,8 @@ ol.battle-instructions svg {
 .light-btn:disabled {
     background-color: #292929;
     color: #4a4a4a;
+}
+
+.space-between {
+    justify-content: space-between;
 }
