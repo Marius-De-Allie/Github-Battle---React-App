@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Popular from './components/Popular';
 import Battle from './components/Battle';
 import ThemeContext from './contexts/theme';
+import Nav from './components/Nav';
 // Styles
 import './index.css';
 
@@ -19,7 +20,7 @@ class App extends React.Component {
             theme: 'light',
             toggleTheme: () => {
                 this.setState(prevState => ({
-                    theme: prevState.theme === 'light' ? 'dark' : prevState.theme
+                    theme: prevState.theme === 'light' ? 'dark' : 'light'
                 }));
             }
         }
@@ -28,9 +29,12 @@ class App extends React.Component {
     render() {
         return (
             <ThemeContext.Provider value={this.state}>
-                <div className='container'>
-                    <Popular />
-                    {/*<Battle />*/}
+                <div className={this.state.theme}>
+                    <div className='container'>
+                        <Nav />
+                        <Popular />
+                        {/*<Battle />*/}
+                    </div>
                 </div>
             </ThemeContext.Provider>
         );
