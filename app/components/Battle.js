@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import Instructions from './BattleInstructions';
 import PlayerInput from './PlayerInput';
 import PlayerPreview from './PlayerPreview';
@@ -16,7 +17,6 @@ class Battle extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleReset = this.handleReset.bind(this);
-        this.handleBattleClick = this.handleBattleClick.bind(this);
     }
 
     handleSubmit(id, player) {
@@ -33,27 +33,17 @@ class Battle extends Component {
         });
     }
 
-    handleBattleClick() {
-        this.setState({
-            battle: true
-        });
-    }
-
     handleBattleReset() {
         this.setState(prevState => ({
             playerOne: null,
-            playerTwo: null,
-            battle: false
+            playerTwo: null
         }));
     }
 
     render() {
-        const { playerOne, playerTwo, battle } = this.state; 
+        const { playerOne, playerTwo } = this.state; 
 
-        if(battle) {
-            return <Results playerOne={playerOne} playerTwo={playerTwo} onReset={this.handleBattleReset}/>
-        }
-
+      
         return (
             <Fragment>
                 <Instructions />
@@ -84,12 +74,14 @@ class Battle extends Component {
                         }
                     </div>
                     {playerOne && playerTwo && 
-                        <button 
-                            type='button' 
-                            onClick={this.handleBattleClick}
+                        <Link
+                         to={{
+                             pathname: '/battle/results',
+                             search: `?playerOne=${playerOne}&playerTwo=${playerTwo}`
+                         }}
                         >
                             Battle
-                        </button>
+                        </Link>
                     }
                 </div>
             </Fragment>

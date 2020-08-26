@@ -11,7 +11,7 @@ const PlayerPreview = ({ username, onReset, label }) => (
                     <div className='player-info'>
                         <img 
                             className='avatar-small' 
-                            src={`https;//github.com/${username}.png?size=200`} 
+                            src={`https://github.com/${username}.png?size=200`} 
                             alt={`Avatar for ${username}`} 
                         />
                         <a
