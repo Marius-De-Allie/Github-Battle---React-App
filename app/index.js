@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// Styles
-import './index.css';
 import Popular from './components/Popular';
 import Battle from './components/Battle';
+// Styles
+import './index.css';
 
 // Component peices.
 // 1. State
@@ -11,6 +11,18 @@ import Battle from './components/Battle';
 // 3. UI - render method
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            theme: 'light',
+            toggleTheme: () => {
+                this.setState(prevState => ({
+                    theme: prevState.theme === 'light' ? 'dark' : prevState.theme
+                }));
+            }
+        }
+    }
 
     render() {
         return (
