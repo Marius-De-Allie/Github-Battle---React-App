@@ -4,25 +4,23 @@ import ThemeContext from '../contexts/theme';
 
 class PlayerInput extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            username: ''
-        }
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+    state = {
+        username: ''
     }
 
-    handleChange(evt) {
+    static propTypes = {
+        onSubmit: PropTypes.func.isRequired,
+        label: PropTypes.string.isRequired
+    }
+
+    handleChange = (evt) => {
         const { value } = evt.target;
         this.setState(prevState => ({
             username: value
         }));
     }
 
-    handleSubmit(evt) {
+    handleSubmit = (evt) => {
         const { username } = this.state;
         evt.preventDefault();
         this.props.onSubmit(username);
@@ -64,12 +62,6 @@ class PlayerInput extends React.Component {
             </ThemeContext.Consumer>
         );
     }
-};
-
-// Comp proptypes.
-PlayerInput.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-    label: PropTypes.string.isRequired
 };
 
 export default PlayerInput;

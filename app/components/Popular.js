@@ -5,22 +5,18 @@ import ReposGrid from './ReposGrid';
 // import Loader from './Loader';
 
 class Popular extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            selectedLanguage: 'All',
-            repos: {},
-            error: null
-        };
-        this.updateLanguage = this.updateLanguage.bind(this);
+    state = {
+        selectedLanguage: 'All',
+        repos: {},
+        error: null
     }
 
     componentDidMount() {
         this.updateLanguage(this.state.selectedLanguage);
     }
 
-    updateLanguage(selectedLanguage) {
+    updateLanguage = (selectedLanguage) => {
         this.setState(prevState => ({
             selectedLanguage,
             error: null

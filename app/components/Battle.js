@@ -7,37 +7,23 @@ import Results from './Results';
 
 class Battle extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            playerOne: null,
-            playerTwo: null,
-            battle: false
-        }
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleReset = this.handleReset.bind(this);
+    state = {
+        playerOne: null,
+        playerTwo: null,
+        battle: false
     }
 
-    handleSubmit(id, player) {
+    handleSubmit = (id, player) => {
         this.setState({
             [id]: player
         })
-
     }
 
-    handleReset(id) {
+    handleReset = (id) => {
         // Reset playerOne or PlayerTwo state to null
         this.setState({
             [id]: null
         });
-    }
-
-    handleBattleReset() {
-        this.setState(prevState => ({
-            playerOne: null,
-            playerTwo: null
-        }));
     }
 
     render() {
