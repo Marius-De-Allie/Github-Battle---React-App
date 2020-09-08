@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import Popular from './components/Popular';
@@ -23,41 +23,30 @@ const Loading = () => (
     <h3>LOADING</h3>
 );
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
+const App = () => {
+    const [ theme, setTheme ] = useState('light');
 
-        this.state = {
-            theme: 'light',
-            toggleTheme: () => {
-                this.setState(prevState => ({
-                    theme: prevState.theme === 'light' ? 'dark' : 'light'
-                }));
-            }
-        }
-    }
+    const toggleTheme = () => setTheme((theme) => theme === 'light' ? 'dark' : 'light');
 
-    render() {
-        return (
-            <Router>
-                <ThemeContext.Provider value={this.state}>
-                    <div className={this.state.theme}>
-                        <div className='container'>
-                            <Nav />
-                            <React.Suspense fallback={<Loading />}>
-                                <Switch>
-                                    <Route exact path='/' component={LazyPopular} />
-                                    <Route exact path='/battle'component={LazyBattle} />
-                                    <Route path='/battle/results'component={LazyResults} />
-                                    <Route render={() => <h1>404 - Sorry page not found</h1>} />
-                                </Switch>
-                            </React.Suspense>
-                        </div>
+    return (
+        <Router>
+            <ThemeContext.Provider value={theme}>
+                <div className={theme}>
+                    <div className='container'>
+                        <Nav toggleTheme={toggleTheme} />
+                        <React.Suspense fallback={<Loading />}>
+                            <Switch>
+                                <Route exact path='/' component={LazyPopular} />
+                                <Route exact path='/battle'component={LazyBattle} />
+                                <Route path='/battle/results'component={LazyResults} />
+                                <Route render={() => <h1>404 - Sorry page not found</h1>} />
+                            </Switch>
+                        </React.Suspense>
                     </div>
-                </ThemeContext.Provider>
-            </Router>
-        );
-    }
+                </div>
+            </ThemeContext.Provider>
+        </Router>
+    );
 };
 
 // ReactDOM.render takes 2 args:
