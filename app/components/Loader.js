@@ -21,38 +21,6 @@ const Loader = ({ text, speed }) => {
   );
 };
 
-// class Loader extends React.Component {
-//     constructor(props) {
-//         super(props);
-
-//         this.state = {
-//             content: props.text
-//         }
-//     }
-
-//     componentDidMount() {
-//         this.interval = window.setInterval(() => {
-//             this.state.content === this.props.text + '...' ?
-//             this.setState({
-//                 content: this.props.text
-//             }) :
-//             this.setState(prevState => ({
-//                 content: prevState.content + '.'
-//             }))
-//         }, this.props.speed)
-//     }
-
-//     componentWillUnmount() {
-//         clearInterval(this.interval);
-//     }
-
-//     render() {
-//         return (
-//             <p>{this.state.content}</p>
-//         );
-//     }
-// };
-
 Loader.defaultProps = {
     text: 'loading',
     speed: 300
