@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import withHover from './withHover';
+import useHover from '../hooks/useHover';
 
 const TooltipContainer = styled.div`
     position: relative;
@@ -24,12 +24,16 @@ const Tooltip = styled.div`
     font-size: 14px
 `;
 
-const ToolTip = ({ text, children, hovering }) => (
-    <TooltipContainer>
-        {hovering && <Tooltip>{text}</Tooltip>}
-        {children}
-    </TooltipContainer>
-);
+const ToolTip = ({ text, children }) => {
+    const [hovering, attrs] = useHover();
+    
+    return (
+        <TooltipContainer {...attrs}>
+            {hovering && <Tooltip>{text}</Tooltip>}
+            {children}
+        </TooltipContainer>
+    );
+};
 
 // Tooltip proptypes.
 Tooltip.propType = {
@@ -37,4 +41,4 @@ Tooltip.propType = {
     hovering: PropTypes.bool
 };
 
-export default withHover(ToolTip);
+export default ToolTip;
