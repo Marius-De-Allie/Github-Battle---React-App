@@ -1,5 +1,25 @@
-// import React from 'react';
-// import PropTypes from 'prop-types';
+import React, {useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
+
+const Loader = ({ text, speed }) => {
+  const [content, setContent] = useState(text);
+
+  useEffect(() => {
+    const id= setInterval(() => {
+    setContent((content) => {
+      return content === `${text}...` 
+      ? text
+      : `${content}.`
+      })
+    }, speed);
+
+    return () => clearInterval(id.current);
+  }, [text, speed]);
+
+  return (
+    <p>{content}</p>
+  );
+};
 
 // class Loader extends React.Component {
 //     constructor(props) {
@@ -11,16 +31,15 @@
 //     }
 
 //     componentDidMount() {
-//         const { text, speed } = this.prop;
 //         this.interval = window.setInterval(() => {
-//             this.state.content === text + '...' ?
+//             this.state.content === this.props.text + '...' ?
 //             this.setState({
-//                 content: text
+//                 content: this.props.text
 //             }) :
 //             this.setState(prevState => ({
 //                 content: prevState.content + '.'
 //             }))
-//         }, speed)
+//         }, this.props.speed)
 //     }
 
 //     componentWillUnmount() {
@@ -34,14 +53,14 @@
 //     }
 // };
 
-// Loader.defaultProps = {
-//     text: 'loading',
-//     speed: 300
-// };
+Loader.defaultProps = {
+    text: 'loading',
+    speed: 300
+};
 
-// Loader.propTypes = {
-//     text: PropTypes.string.isRequired,
-//     speed: PropTypes.number.isRequired
-// };
+Loader.propTypes = {
+    text: PropTypes.string.isRequired,
+    speed: PropTypes.number.isRequired
+};
 
-// export default Loader;
+export default Loader;
